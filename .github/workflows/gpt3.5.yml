@@ -1,0 +1,44 @@
+on:
+  issue_comment:
+    types: [created, edited]
+jobs:
+  OpenAI_Reply:
+    if: "contains(github.event.issue.labels.*.name, 'GPT3.5')"
+    runs-on: ubuntu-latest
+    
+    permissions:
+      issues: write
+      contents: write
+
+    steps:
+      - name: git clone
+        uses: actions/checkout@v3
+        with:
+            fetch-depth: 1
+      - name: Install Python Packages
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+          cache: 'pip' # caching pip dependencies
+      - run: pip install -r .github/requirements.txt
+
+      - name: Get issue content
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -X GET "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}" -o issue.json
+          jq -r '.body' issue.json > issue_content.txt
+
+      - name: Get all issue comments
+        env: 
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          mkdir -p .github
+          curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -X GET "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/comments" -o comments.json
+          python3 .github/config/ChatGPT.py
+
+      - name: Create comment
+        uses: peter-evans/create-or-update-comment@v2
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          body-file: '.github/comment-template.md'

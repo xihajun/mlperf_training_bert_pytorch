@@ -1,0 +1,4 @@
+.github/comment-template.md
+*.json
+*.txt
+!requirements.txt

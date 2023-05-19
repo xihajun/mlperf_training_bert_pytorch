@@ -1,0 +1,167 @@
+docs_dir: mkdocs/docs
+repo_name: 'krai/mlperf_training_bert_pytorch'
+repo_url: 'https://github.com/krai/mlperf_training_bert_pytorch'
+site_name: 'MLPerf Training BERT Pytorch Implementation'
+site_description: 'BERT'
+site_author: 'Junfan'
+site_url: 'https://xihajun.github.io/mlperf_training_bert_pytorch/'
+edit_uri: edit/mkdocs/docs/
+
+copyright: 'Copyright &copy; 2023 KRAI'
+
+# Navigation Page
+nav:
+  - Home:
+    - Introduction: Home/Introduction.md
+    - BERT Overview: Home/BERTOverview.md
+    - Docker & Data Setup: Home/Setup.md
+    - Data Transfer: Home/TransferData.md
+
+  - Implementation Details:
+    - NVIDIA's Implementation: Implementation_Details/NVIDIA.md
+    - HuggingFace's Implementation: Implementation_Details/HuggingFace.md
+  - Hardware:
+    - A5000 (2 GPUs) - KRAI: Hardware/KRAI_A5000.md
+    - H100 (1 GPU) - lamadalabs: Hardware/lamadalabs_H100.md
+    - T4 (1 GPU) - colab (free): Hardware/colab_T4.md
+  - GPU Providers:
+    - Pricing: GPU_Providers/Pricing.md
+  - Benchmarking:
+    - Benchmarking Overview: Benchmarking/Benchmarking.md
+    - Benchmarking Results: Benchmarking/Results.md
+  - Troubleshooting:
+    - Logs: Troubleshooting/Logs.md
+    - Common Issues: Troubleshooting/CommonIssues.md
+    - Solutions: Troubleshooting/Solutions.md
+  - Future Work:
+    - Planned Improvements: Future_Work/Planned_Improvements.md
+    - Potential New Features: Future_Work/Potential_New_Features.md
+  - Conclusion: Conclusion.md
+  - License: License.md
+
+
+# JavaScript for Intercom Widget
+extra_javascript:
+  - assets/vendor/codemirror/codemirror.js
+  - assets/vendor/codemirror/mode/javascript/javascript.js
+  - assets/vendor/codemirror/mode/xml/xml.js
+  - assets/vendor/codemirror/mode/jsx/jsx.js
+  - assets/apprun-play.js
+  - assets/ttty/dist/ttty.iife.js
+  - assets/ttty/dist/new.js
+
+extra_css:
+  - assets/vendor/codemirror/codemirror.css
+
+# Set theme to `readthedocs`
+# must also set Action to use `@nomaterial` branch instead of `@master` for material
+theme:
+  custom_dir: mkdocs/docs/overrides
+  name: material
+  language: en
+  palette:
+    # Palette toggle for automatic mode
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: agic 
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
+  font:
+    text: Roboto
+    code: Roboto Mono
+  features:
+    - navigation.instant
+    - navigation.tracking
+    # - navigation.tabs.sticky
+    # - navigation.indexes
+    # - navigation.top
+    - content.tabs.link
+    # - navigation.sections
+    # - toc.follow
+    # - toc.integrate 
+  favicon: assets/favicon.png
+  icon:
+    logo: material/rocket
+
+# Options
+extra:
+  social:
+    - icon: fontawesome/brands/orcid
+      link: https://orcid.org/
+    - icon: fontawesome/brands/github
+      link: https://github.com/krai/
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/krai
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/company/krai
+    - icon: fontawesome/brands/docker
+      link: https://harbor.cyverse.org/
+    - icon: fontawesome/brands/youtube
+      link: https://www.youtube.com
+  analytics:
+    provider: google
+    property: UA-72224033-6
+
+# Extensions
+markdown_extensions:
+  - admonition
+  - abbr
+  - attr_list
+  - def_list
+  - footnotes
+  - meta
+  - md_in_html
+  - toc:
+      permalink: true
+      title: On this page
+      toc_depth: 3
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink:
+      repo_url_shorthand: true
+      user: squidfunk
+      repo: mkdocs-material
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+  - pymdownx.tabbed:
+      alternate_style: true 
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.snippets
+
+plugins:
+    - search
+    - inline-svg
+    - mkdocstrings
+    - git-revision-date
+    - include-markdown
+    - mkdocs-jupyter:
+          include_source: True
+          ignore_h1_titles: True

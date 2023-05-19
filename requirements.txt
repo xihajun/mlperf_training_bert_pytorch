@@ -1,0 +1,19 @@
+mkdocs-git-revision-date-plugin 
+mkdocs-jupyter 
+mkdocs-material 
+mkdocs-pdf-export-plugin
+mkdocstrings 
+mkdocstrings-crystal
+mkdocs-plugin-inline-svg
+mkdocs-include-markdown-plugin
+
+# Requirements for core
+jinja2>=3.0.2
+markdown<3.4
+mkdocs==1.4.2
+mkdocs-material-extensions>=1.0.3
+pygments>=2.12
+pymdown-extensions>=9.4
+
+# Requirements for plugins
+requests>=2.26

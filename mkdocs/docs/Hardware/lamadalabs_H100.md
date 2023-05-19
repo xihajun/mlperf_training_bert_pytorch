@@ -1,0 +1,3 @@
+24 cores CPU
+80 GB RAM GPU H100
+500 GB disk
